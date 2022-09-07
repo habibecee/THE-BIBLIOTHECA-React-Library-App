@@ -1,0 +1,64 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "name": " Bir Astronotun Sonsuz Yolculuğu",
+      "author": "Jaroslav Kalfar",
+      "isbn": "111111111",
+      "categoryId": "2"
+    },
+    {
+      "id": 2,
+      "name": " Otostopçunun Galaksi Rehberi",
+      "author": "Douglas Adams",
+      "isbn": "112113131",
+      "categoryId": "2"
+    },
+    {
+      "id": 4,
+      "name": " Denemeler",
+      "author": "Montaigne",
+      "isbn": "112315161",
+      "categoryId": "3"
+    },
+    {
+      "id": 5,
+      "name": " Soneler",
+      "author": "Shekaspeare",
+      "isbn": "112375161",
+      "categoryId": "4"
+    },
+    {
+      "id": 6,
+      "name": " Gurur ve Önyargı",
+      "author": "Jane Austen",
+      "isbn": "112344161",
+      "categoryId": "1"
+    },
+    {
+      "id": 7,
+      "name": " Akıl ve Tutku",
+      "author": "Jane Austen",
+      "isbn": "112344561",
+      "categoryId": "1"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Roman"
+    },
+    {
+      "id": "2",
+      "name": "Bilim Kurgu"
+    },
+    {
+      "id": "3",
+      "name": "Deneme"
+    },
+    {
+      "id": "4",
+      "name": "Şiir"
+    }
+  ]
+}
