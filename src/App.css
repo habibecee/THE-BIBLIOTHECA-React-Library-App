@@ -45,6 +45,18 @@ body{
   background: linear-gradient(to right,#69779B, #B1BED5, #F3F8FF,#F4F3F3 );
 }
 
+.Page-text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  
+}
+.Page-text h1{
+  color: rgb(0, 0, 0);
+  text-shadow: 5px -5px 20px #fffb00, -5px 5px 20px #6bff02, 5px 5px 10px #ff00ea;
+}
+
 .list-number{
   background-color: rgba(198, 198, 252, 0.541) !important;
 }
@@ -56,5 +68,14 @@ body{
 .author-name{
   background-color: rgba(171, 233, 240, 0.541) !important;
   text-shadow: 0 0 2px #f5f97a, 0 0 2px #b0fb61;
+}
+
+.btnEdit{
+  box-shadow: 0px 0px 15px 3px #2d3129 !important; 
+  
+}
+
+.btnCancel{
+  box-shadow: 0px 0px 15px 3px #2d3129 !important;
 }
 

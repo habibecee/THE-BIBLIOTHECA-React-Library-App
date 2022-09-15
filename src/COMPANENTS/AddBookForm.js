@@ -97,12 +97,17 @@ const AddBookForm = (props) => {
 								Select Category{" "}
 							</option>
 							{categories.map((cat) => {
-								return <option value={cat.id}> {cat.name} </option>;
+								return (
+									<option key={cat.id} value={cat.id}>
+										{" "}
+										{cat.name}{" "}
+									</option>
+								);
 							})}
 						</select>
 					</div>
 					<div className="mt-5 d-flex justify-content-center">
-						<button type="submit" className="btn btn-success p-1 w-50">
+						<button type="submit" className="btnEdit btn btn-success p-1 w-50">
 							{" "}
 							SAVE NEW BOOK{" "}
 						</button>

@@ -2,16 +2,16 @@
   "books": [
     {
       "id": 1,
-      "name": " Bir Astronotun Sonsuz Yolculuğu",
+      "name": "Bir Astronotun Sonsuz Yolculuğu",
       "author": "Jaroslav Kalfar",
-      "isbn": "111111111",
+      "isbn": "123456677",
       "categoryId": "2"
     },
     {
       "id": 2,
-      "name": " Otostopçunun Galaksi Rehberi",
+      "name": "Otostopçunun Galaksi Rehberi",
       "author": "Douglas Adams",
-      "isbn": "112113131",
+      "isbn": "388484822282",
       "categoryId": "2"
     },
     {
@@ -46,19 +46,23 @@
   "categories": [
     {
       "id": "1",
-      "name": "Roman"
+      "name": "Novel"
     },
     {
       "id": "2",
-      "name": "Bilim Kurgu"
+      "name": "Sci-Fi"
     },
     {
       "id": "3",
-      "name": "Deneme"
+      "name": "Essay"
     },
     {
       "id": "4",
-      "name": "Şiir"
+      "name": "Poem"
+    },
+    {
+      "id": "5",
+      "name": "Story"
     }
   ]
 }

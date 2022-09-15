@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
+import Modal from "./Modal";
 
 const BooksList = (props) => {
 	const [books, setBooks] = useState(null);
 	const [categories, setCategories] = useState(null);
 	const [didUpdate, setDidUpdate] = useState(false);
+	const [showModal, setShowModal] = useState(false);
+	const [willDeleteBook, setWillDeleteBook] = useState(null);
 
 	useEffect(() => {
 		axios
@@ -33,6 +36,7 @@ const BooksList = (props) => {
 			.then((res) => {
 				console.log(res);
 				setDidUpdate(!didUpdate);
+				setShowModal(false);
 			})
 			.catch((err) => console.log(err));
 	};
@@ -42,10 +46,13 @@ const BooksList = (props) => {
 	}
 	return (
 		<div className="container-xl my-5 ">
+			<div className="Page-text">
+				<h1> BOOKS LIST </h1>
+			</div>
 			<div className="my-4 d-flex justify-content-end">
-				<Link to="/add-book" className="btn btn-primary ">
+				<Link to="/add-book" className="btnEdit btn btn-primary ">
 					{" "}
-					Kitap Ekle{" "}
+					Add New Book{" "}
 				</Link>
 			</div>
 			<table className="table ">
@@ -66,29 +73,34 @@ const BooksList = (props) => {
 							(cat) => cat.id === book.categoryId
 						);
 						return (
-							<tr>
+							<tr key={book.id}>
 								<td> # </td>
-								<td> {book.name} </td>
-								<td> {book.author} </td>
-								<td> {category.name} </td>
+								<td> {book?.name} </td>
+								<td> {book?.author} </td>
+								<td> {category?.name} </td>
 								<td className="text-center">
 									{" "}
-									{book.isbn === "" ? "-" : book.isbn}{" "}
+									{book?.isbn === "" ? "-" : book?.isbn}{" "}
 								</td>
 								<td>
 									<div className="btn-group" role="group">
-										<button
-											className="btn btn-outline-primary btn-sm me-2"
+										<Link
+											to={`edit-book/${book.id}`}
+											className="btn btn-outline-secondary btn-sm me-2"
 											type="button"
 										>
 											{" "}
 											<i className="fa-solid fa-pen-to-square"></i>
-										</button>
+										</Link>
 
 										<button
 											className="btn btn-outline-danger btn-sm"
 											type="button"
-											onClick={() => deleteBook(book.id)}
+											onClick={() => {
+												setShowModal(true);
+												// deleteBook(book.id)
+												setWillDeleteBook(book.id);
+											}}
 										>
 											{" "}
 											<i className="fa-regular fa-trash-can"></i>
@@ -100,6 +112,17 @@ const BooksList = (props) => {
 					})}
 				</tbody>
 			</table>
+			{showModal === true && (
+				<Modal
+					title={"DELETE BOOK"}
+					explain={"Are you sure you want to delete this book? "}
+					warning={
+						"(If you accept, the book will be removed from the list. This action can't be undone!) "
+					}
+					shouldDo={() => deleteBook(willDeleteBook)}
+					setShowModal={setShowModal}
+				/>
+			)}
 		</div>
 	);
 };

@@ -6,6 +6,9 @@ const AddBook = (props) => {
 	return (
 		<div>
 			<Header />
+			<div className="Page-text">
+				<h1> ADD NEW BOOK </h1>
+			</div>
 			<AddBookForm />
 		</div>
 	);
