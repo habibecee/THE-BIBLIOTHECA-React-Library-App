@@ -1,10 +1,11 @@
 import React from "react";
 
 const Modal = (props) => {
-	const { setShowModal, shouldDo, title, explain, warning } = props;
+	const { onCancel, onConfirm, title, explain, warning } = props;
 
 	return (
-		<div
+		<button
+			onClick={onCancel}
 			style={{
 				position: "absolute",
 				top: 0,
@@ -15,6 +16,7 @@ const Modal = (props) => {
 				display: "flex",
 				justifyContent: "center",
 				alignItems: "center",
+				cursor: "default",
 			}}
 		>
 			<div
@@ -25,33 +27,47 @@ const Modal = (props) => {
 					borderRadius: "5px",
 				}}
 			>
-				<h4
+				<h2
 					className="text-center mt-0"
-					style={{ color: "red", fontSize: "14px", fontWeight: "bold" }}
+					style={{
+						color: "purple",
+						fontSize: "20px",
+						fontWeight: "bold",
+						textDecorationLine: "underline",
+					}}
 				>
 					{" "}
 					{title}{" "}
-				</h4>
+				</h2>
 				<h5 className="text-center" style={{ fontWeight: "bold" }}>
 					{" "}
 					{explain}{" "}
 				</h5>
-				<p style={{ fontSize: "13px", color: "grayText" }}> {warning} </p>
+				<p
+					style={{ fontSize: "13px", color: "grayText" }}
+					className="text-center"
+				>
+					{" "}
+					{warning}{" "}
+				</p>
 				<div className="d-flex justify-content-center">
 					<button
-						onClick={() => setShowModal(false)}
+						onClick={onCancel}
 						className="btn btn-sm btn-outline-danger mx-3"
 					>
 						{" "}
 						Close{" "}
 					</button>
-					<button onClick={shouldDo} className="btn btn-sm btn-outline-primary">
+					<button
+						onClick={onConfirm}
+						className="btn btn-sm btn-outline-primary"
+					>
 						{" "}
-						Okay{" "}
+						Accept{" "}
 					</button>
 				</div>
 			</div>
-		</div>
+		</button>
 	);
 };
 

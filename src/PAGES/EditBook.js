@@ -3,6 +3,7 @@ import Header from "../COMPANENTS/Header";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "../COMPANENTS/Loading";
+import Modal from "../COMPANENTS/Modal";
 
 const EditBook = (props) => {
 	const params = useParams();
@@ -14,6 +15,7 @@ const EditBook = (props) => {
 	const [isbn, setIsbn] = useState("");
 	const [category, setCategory] = useState("");
 	const [categories, setCategories] = useState(null);
+	const [showModal, setShowModal] = useState(false);
 
 	useEffect(() => {
 		axios
@@ -36,6 +38,10 @@ const EditBook = (props) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		setShowModal(true);
+	};
+
+	const editBook = () => {
 		if (bookName === "" || authorName === "" || category === "") {
 			alert("Kitap adı, Yazar adı ve Kategori boş bırakılamaz!!!");
 			return;
@@ -54,6 +60,7 @@ const EditBook = (props) => {
 
 			.then((res) => {
 				console.log(res);
+				setShowModal(false);
 				navigate("/");
 			})
 			.catch((err) => console.log("edit error", err));
@@ -123,6 +130,9 @@ const EditBook = (props) => {
 						</div>
 						<div className="mt-5 d-flex justify-content-center">
 							<button
+								onClick={() => {
+									setShowModal(true);
+								}}
 								type="submit"
 								style={{
 									backgroundColor: "darkorchid",
@@ -148,6 +158,15 @@ const EditBook = (props) => {
 					</div>
 				</form>
 			</div>
+			{showModal === true && (
+				<Modal
+					title={`Edit ${bookName}`}
+					explain={`Do you want to edit ${bookName} on your list?`}
+					warning="(If you accept, the book will be edited on your list. This action can't be undone!) "
+					onCancel={() => setShowModal(false)}
+					onConfirm={() => editBook()}
+				/>
+			)}
 		</div>
 	);
 };

@@ -4,8 +4,14 @@
 
 <h3> This project will be updated. </h3>  </br>
 
-<p> This app only have functions that adding new books in database and deleting a book saved in data base for now.  </p> </br>
+<p> This app only have functions that adding new books, editing booka and deleting a book saved in data base for now. There is added modals to approve deleting and editing processes in the last updated. </p> </br>
 
-<h3> SITE VIEW </h3>
+<h3> SITE VIEW </h3> </br>
 
-![](./src/Assets/bibliotheca-app-screen.gif) </br> </br>
+<h5> 1. FUNCTIONS OF ADDING AND DELETING BOOK; </h5> </br>
+
+![](./src/Assets/bibliotheca-app-screen.gif) </br>
+
+<h5> 2. FUNCTION OF EDITING BOOK AND DISPLAY OF MODALS; </h5> </br>
+
+![](./src/Assets/bibliotheca-app-screen2.gif) </br>

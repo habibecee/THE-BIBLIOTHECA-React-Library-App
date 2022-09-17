@@ -10,6 +10,7 @@ const BooksList = (props) => {
 	const [didUpdate, setDidUpdate] = useState(false);
 	const [showModal, setShowModal] = useState(false);
 	const [willDeleteBook, setWillDeleteBook] = useState(null);
+	const [willDeletedBookName, setWillDeletedBookName] = useState("");
 
 	useEffect(() => {
 		axios
@@ -100,6 +101,7 @@ const BooksList = (props) => {
 												setShowModal(true);
 												// deleteBook(book.id)
 												setWillDeleteBook(book.id);
+												setWillDeletedBookName(book.name);
 											}}
 										>
 											{" "}
@@ -114,13 +116,13 @@ const BooksList = (props) => {
 			</table>
 			{showModal === true && (
 				<Modal
-					title={"DELETE BOOK"}
-					explain={"Are you sure you want to delete this book? "}
+					title={willDeletedBookName}
+					explain={`Are you sure you want to delete ${willDeletedBookName}?`}
 					warning={
 						"(If you accept, the book will be removed from the list. This action can't be undone!) "
 					}
-					shouldDo={() => deleteBook(willDeleteBook)}
-					setShowModal={setShowModal}
+					onConfirm={() => deleteBook(willDeleteBook)}
+					onCancel={() => setShowModal(false)}
 				/>
 			)}
 		</div>
