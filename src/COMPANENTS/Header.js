@@ -24,7 +24,16 @@ const Header = (props) => {
 					<ul className="navbar-nav me-auto ms-5 mb-2 mb-lg-0">
 						<li className="nav-item ms-5">
 							<Link className="nav-link active" aria-current="page" to="/">
-								Book List
+								Books List
+							</Link>
+						</li>
+						<li className="nav-item ms-5">
+							<Link
+								className="nav-link active"
+								aria-current="page"
+								to="/categories"
+							>
+								Categories List
 							</Link>
 						</li>
 					</ul>
