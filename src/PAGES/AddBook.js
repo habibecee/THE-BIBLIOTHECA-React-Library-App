@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../COMPANENTS/Header";
 import AddBookForm from "../COMPANENTS/AddBookForm";
 
 const AddBook = (props) => {
+	useEffect(() => {
+		document.title = "Library - Add Book";
+	});
 	return (
 		<div>
 			<Header />

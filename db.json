@@ -5,63 +5,70 @@
       "name": "Bir Astronotun Sonsuz Yolculuğu",
       "author": "Jaroslav Kalfar",
       "isbn": "123456677",
-      "categoryId": "2"
+      "categoryId": 2
     },
     {
       "id": 2,
       "name": "Otostopçunun Galaksi Rehberi",
       "author": "Douglas Adams",
       "isbn": "388484822282",
-      "categoryId": "2"
+      "categoryId": 2
     },
     {
       "id": 4,
       "name": " Denemeler",
       "author": "Montaigne",
       "isbn": "112315161",
-      "categoryId": "3"
+      "categoryId": 3
     },
     {
       "id": 5,
       "name": " Soneler",
       "author": "Shekaspeare",
       "isbn": "112375161",
-      "categoryId": "4"
+      "categoryId": 4
     },
     {
       "id": 7,
       "name": " Akıl ve Tutku",
       "author": "Jane Austen",
       "isbn": "112344561",
-      "categoryId": "1"
+      "categoryId": 1
     },
     {
       "id": 1662549037244,
       "name": "Arcturus'a Yolculuk",
       "author": "David Lindsay",
       "isbn": "",
+      "categoryId": 2
+    },
+    {
+      "id": 1663685352999,
+      "name": "1234",
+      "author": "1234",
+      "isbn": "",
       "categoryId": "2"
     }
   ],
   "categories": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Novel"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Sci-Fi"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Essay"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Poem"
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Story"
     }
   ]

@@ -2,24 +2,28 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 const AddBookForm = (props) => {
-	const [categories, setCategories] = useState(null);
+	const dispatch = useDispatch();
+	const { categoriesState } = useSelector((state) => state);
+	console.log(categoriesState);
+	// const [categories, setCategories] = useState(null);
 	const [bookName, setBookName] = useState("");
 	const [authorName, setAuthorName] = useState("");
 	const [isbn, setIsbn] = useState("");
 	const [category, setCategory] = useState("");
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		axios
-			.get("http://localhost:3004/categories")
-			.then((res) => {
-				console.log(res);
-				setCategories(res.data);
-			})
-			.catch((err) => console.log(err));
-	}, []);
+	// useEffect(() => {
+	// 	axios
+	// 		.get("http://localhost:3004/categories")
+	// 		.then((res) => {
+	// 			console.log(res);
+	// 			setCategories(res.data);
+	// 		})
+	// 		.catch((err) => console.log(err));
+	// }, []);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -39,7 +43,8 @@ const AddBookForm = (props) => {
 		axios
 			.post("http://localhost:3004/books", newBook)
 			.then((res) => {
-				alert("Kitap Başarıyla Kaydedildi");
+				alert("Kitap Başarıyla Kaydedildi", 2000);
+				dispatch({ type: "ADD_BOOK", payload: newBook });
 				setBookName("");
 				setAuthorName("");
 				setIsbn("");
@@ -49,7 +54,7 @@ const AddBookForm = (props) => {
 			.catch((err) => console.log(err));
 	};
 
-	if (categories === null) {
+	if (categoriesState.success !== true) {
 		return <Loading />;
 	}
 
@@ -96,7 +101,7 @@ const AddBookForm = (props) => {
 								{" "}
 								Select Category{" "}
 							</option>
-							{categories.map((cat) => {
+							{categoriesState.categories.map((cat) => {
 								return (
 									<option key={cat.id} value={cat.id}>
 										{" "}
