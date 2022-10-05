@@ -93,9 +93,9 @@ const Categories = (props) => {
 			{showDeleteModal === true && (
 				<Modal
 					title={willDeletedCategoryName}
-					explain={`Are you sure you want to delete ${willDeletedCategoryName}?`}
+					explain={`Are you sure you want to delete category of ${willDeletedCategoryName}?`}
 					warning={
-						"(If you accept, the book will be removed from the list. This action can't be undone!) "
+						"(If you accept, this category will be removed from the category list. This action can't be undone!)"
 					}
 					onConfirm={() => deleteCategory(willDeleteCategory)}
 					onCancel={() => setShowDeleteModal(false)}

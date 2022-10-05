@@ -19,7 +19,7 @@ const AddCategoryForm = (props) => {
 		}
 		const hasCategory = categoriesState.categories.find(
 			(item) =>
-				item.name.toLowerCase().trim() === categoryName.toLowerCase().trim()
+				item.name.toLowerCase(0).trim() === categoryName.toLowerCase().trim(1)
 		);
 		if (hasCategory !== undefined) {
 			alert("Kategori zaten mevcut!");
@@ -28,7 +28,8 @@ const AddCategoryForm = (props) => {
 
 		const newCategory = {
 			id: new Date().getTime(),
-			name: categoryName[0].toUpperCase() + categoryName.substring(1),
+			name:
+				categoryName[0].toUpperCase() + categoryName.toLowerCase().substring(1),
 		};
 		axios
 			.post(" http://localhost:3004/categories", newCategory)
