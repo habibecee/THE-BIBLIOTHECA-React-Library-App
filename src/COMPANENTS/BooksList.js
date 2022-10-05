@@ -46,6 +46,7 @@ const BooksList = (props) => {
 					type: "DELETE_BOOK",
 					payload: id,
 				});
+
 				setDidUpdate(!didUpdate);
 				setShowModal(false);
 			})
@@ -96,7 +97,7 @@ const BooksList = (props) => {
 								<td>
 									<div className="btn-group" role="group">
 										<Link
-											to={`edit-book/${book.id}`}
+											to={`/edit-book/${book.id}`}
 											className="btn btn-outline-secondary btn-sm me-2"
 											type="button"
 										>

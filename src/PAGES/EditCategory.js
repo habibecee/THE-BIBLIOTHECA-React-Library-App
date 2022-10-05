@@ -4,12 +4,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "../COMPANENTS/Loading";
 import Modal from "../COMPANENTS/Modal";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const EditCategory = (props) => {
 	const navigate = useNavigate();
 	const params = useParams();
 	console.log(params.categoryId);
+	const dispatch = useDispatch();
 	const [allCategories, setAllCategories] = useState(null);
 	const [category, setCategory] = useState(null);
 	const [newCategoryName, setNewCategoryName] = useState("");
@@ -32,9 +33,36 @@ const EditCategory = (props) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		setShowModal(true);
+	};
+
+	const editCategory = () => {
 		if (newCategoryName === "") {
 			alert("Kategori ismi boş bırakılamaz");
 		}
+
+		const hasCategory = allCategories.find(
+			(item) => item.name.toLowerCase() === newCategoryName.toLowerCase()
+		);
+		console.log("hasCategory", hasCategory);
+
+		if (hasCategory !== undefined) {
+			alert("Kategori Zaten Mevcut!");
+		}
+
+		const editedCategory = {
+			...category,
+			name: newCategoryName,
+		};
+		axios
+			.put(`http://localhost:3004/categories/${category.id}`, editedCategory)
+			.then((res) => {
+				console.log("editedCategoryRes", res);
+				dispatch({ type: "EDIT_CATEGORY", payload: editedCategory });
+				setShowModal(false);
+				navigate("/categories");
+			})
+			.catch((err) => console.log("editedCategory ERR", err));
 	};
 
 	if (allCategories === null) {
@@ -89,6 +117,15 @@ const EditCategory = (props) => {
 					</div>
 				</form>
 			</div>
+			{showModal === true && (
+				<Modal
+					title={`CATEGORY: "${category.name}"`}
+					explain={`Do you want to edit this category to "${newCategoryName}" on the category list?`}
+					warning="(If you accept, the book will be edited on your list. This action can't be undone!) "
+					onCancel={() => setShowModal(false)}
+					onConfirm={() => editCategory()}
+				/>
+			)}
 		</div>
 	);
 };

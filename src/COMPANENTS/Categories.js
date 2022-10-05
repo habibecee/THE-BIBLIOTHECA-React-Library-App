@@ -9,7 +9,7 @@ const Categories = (props) => {
 	useEffect(() => {
 		document.title = "Library - Categories List";
 	}, []);
-	const { categoriesState } = useSelector((state) => state);
+	const { categoriesState, booksState } = useSelector((state) => state);
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 	const [willDeleteCategory, setWillDeleteCategory] = useState("");
 	const [willDeletedCategoryName, setWillDeletedCategoryName] = useState("");
@@ -25,6 +25,13 @@ const Categories = (props) => {
 					type: "DELETE_CATEGORY",
 					payload: id,
 				});
+				const bookHasCategory = booksState.books.filter(
+					(item) => item.categoryId == id
+				);
+				console.log("bookHasCategory", bookHasCategory);
+				bookHasCategory.map((item) =>
+					dispatch({ type: "DELETE_BOOK", payload: item.id })
+				);
 			})
 			.catch((err) => console.log("deleteCategoryError", err));
 	};

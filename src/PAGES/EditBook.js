@@ -178,8 +178,8 @@ const EditBook = (props) => {
 			</div>
 			{showModal === true && (
 				<Modal
-					title={`Edit ${bookName}`}
-					explain={`Do you want to edit ${bookName} on your list?`}
+					title={`BOOK: "${bookName}"`}
+					explain={`Do you want to edit this book on your list?`}
 					warning="(If you accept, the book will be edited on your list. This action can't be undone!) "
 					onCancel={() => setShowModal(false)}
 					onConfirm={() => editBook()}

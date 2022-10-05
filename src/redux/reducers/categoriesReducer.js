@@ -50,6 +50,7 @@ const categoriesReducer = (state = initialState, action) => {
 				(item) => item.id != action.payload.id
 			);
 			return {
+				...state,
 				categories: [...editedCategory, action.payload],
 			};
 		default:
