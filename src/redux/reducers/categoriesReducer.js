@@ -44,6 +44,14 @@ const categoriesReducer = (state = initialState, action) => {
 				...state,
 				categories: filteredCategories,
 			};
+
+		case "EDIT_CATEGORY":
+			const editedCategory = state.categories.filter(
+				(item) => item.id != action.payload.id
+			);
+			return {
+				categories: [...editedCategory, action.payload],
+			};
 		default:
 			return state;
 	}

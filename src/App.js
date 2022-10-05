@@ -1,13 +1,14 @@
 import "./App.css";
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import axios from "axios";
 import Home from "./PAGES/Home";
 import AddBook from "./PAGES/AddBook";
 import EditBook from "./PAGES/EditBook";
 import CategoriesList from "./PAGES/CategoriesList";
 import AddCategory from "./PAGES/AddCategory";
-import { useDispatch } from "react-redux";
-import axios from "axios";
+import EditCategory from "./PAGES/EditCategory";
 
 function App() {
 	const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function App() {
 				<Route path="/edit-book/:bookId" element={<EditBook />} />
 				<Route path="/categories" element={<CategoriesList />} />
 				<Route path="/add-category" element={<AddCategory />} />
+				<Route path="/edit-category/:categoryId" element={<EditCategory />} />
 			</Routes>
 		</BrowserRouter>
 	);

@@ -62,7 +62,7 @@ const Categories = (props) => {
 								<td>
 									<div className="btn-group" role="group">
 										<Link
-											to={`edit-category/${category.id}`}
+											to={`/edit-category/${category.id}`}
 											className="btn btn-outline-secondary btn-sm me-2"
 											type="button"
 										>
