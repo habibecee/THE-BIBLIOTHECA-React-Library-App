@@ -11,7 +11,7 @@ const Modal = (props) => {
 				top: 0,
 				left: 0,
 				width: "100%",
-				height: "200vh",
+				height: "150vh",
 				backgroundColor: "rgba(0,0,0,0.3",
 				display: "flex",
 				justifyContent: "center",
@@ -21,10 +21,16 @@ const Modal = (props) => {
 		>
 			<div
 				style={{
-					width: "50%",
+					width: "30%",
+					marginBottom: "40%",
 					padding: "20px",
 					backgroundColor: "#fff",
 					borderRadius: "5px",
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
+					alignItems: "center",
+					cursor: "default",
 				}}
 			>
 				<h2

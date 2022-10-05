@@ -1,13 +1,33 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
+import Modal from "./Modal";
+import axios from "axios";
 
 const Categories = (props) => {
 	useEffect(() => {
 		document.title = "Library - Categories List";
 	}, []);
 	const { categoriesState } = useSelector((state) => state);
+	const [showDeleteModal, setShowDeleteModal] = useState(false);
+	const [willDeleteCategory, setWillDeleteCategory] = useState("");
+	const [willDeletedCategoryName, setWillDeletedCategoryName] = useState("");
+	const dispatch = useDispatch();
+
+	const deleteCategory = (id) => {
+		axios
+			.delete(`http://localhost:3004/categories/${id}`)
+			.then((res) => {
+				console.log(res.data);
+				//kullanıcıya güncel veriyi göstermek için dispatch ile gğncel veri ekrana aktarılır
+				dispatch({
+					type: "DELETE_CATEGORY",
+					payload: id,
+				});
+			})
+			.catch((err) => console.log("deleteCategoryError", err));
+	};
 
 	if (categoriesState.success === false) {
 		return <Loading />;
@@ -24,7 +44,7 @@ const Categories = (props) => {
 					Add New Category{" "}
 				</Link>
 			</div>
-			<table className="table ">
+			<table className="table">
 				<thead className="thead text-start">
 					<tr className="table-dark">
 						<th scope="col"></th>
@@ -54,10 +74,10 @@ const Categories = (props) => {
 											className="btn btn-outline-danger btn-sm"
 											type="button"
 											onClick={() => {
-												// setShowModal(true);
-												// // deleteBook(book.id)
-												// setWillDeleteBook(book.id);
-												// setWillDeletedBookName(book.name);
+												setShowDeleteModal(true);
+												// willDeleteCategory(category.id);
+												setWillDeleteCategory(category.id);
+												setWillDeletedCategoryName(category.name);
 											}}
 										>
 											{" "}
@@ -70,17 +90,17 @@ const Categories = (props) => {
 					})}
 				</tbody>
 			</table>
-			{/* {showModal === true && (
+			{showDeleteModal === true && (
 				<Modal
-					title={willDeletedBookName}
-					explain={`Are you sure you want to delete ${willDeletedBookName}?`}
+					title={willDeletedCategoryName}
+					explain={`Are you sure you want to delete ${willDeletedCategoryName}?`}
 					warning={
 						"(If you accept, the book will be removed from the list. This action can't be undone!) "
 					}
-					onConfirm={() => deleteBook(willDeleteBook)}
-					onCancel={() => setShowModal(false)}
+					onConfirm={() => deleteCategory(willDeleteCategory)}
+					onCancel={() => setShowDeleteModal(false)}
 				/>
-			)} */}
+			)}
 		</div>
 	);
 };
