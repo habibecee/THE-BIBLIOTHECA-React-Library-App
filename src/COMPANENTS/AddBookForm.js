@@ -97,11 +97,8 @@ const AddBookForm = (props) => {
 							value={category}
 							onChange={(event) => setCategory(event.target.value)}
 						>
-							<option value={""} selected>
-								{" "}
-								Select Category{" "}
-							</option>
-							{categoriesState.categories.map((cat) => {
+							<option value={""}> Select Category </option>
+							{categoriesState.categories?.map((cat) => {
 								return (
 									<option key={cat.id} value={cat.id}>
 										{" "}

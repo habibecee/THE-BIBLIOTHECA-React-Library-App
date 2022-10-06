@@ -11,30 +11,22 @@ const BooksList = (props) => {
 	console.log("categoriesState", categoriesState);
 	console.log("booksState", booksState);
 
-	// const [books, setBooks] = useState(null);
+	const [filterBooks, setFilterBooks] = useState(null);
 	// const [categories, setCategories] = useState(null);
 	const [didUpdate, setDidUpdate] = useState(false);
 	const [showModal, setShowModal] = useState(false);
 	const [willDeleteBook, setWillDeleteBook] = useState(null);
 	const [willDeletedBookName, setWillDeletedBookName] = useState("");
+	const [searchText, setSearchText] = useState("");
 
 	useEffect(() => {
-		// axios
-		// 	.get("http://localhost:3004/books")
-		// 	.then((resBook) => {
-		// 		console.log(resBook);
-		// 		setBooks(resBook.data);
-		// 		// 	axios
-		// 		// 		.get("http://localhost:3004/categories")
-		// 		// 		.then((resCat) => {
-		// 		// 			setTimeout(() => {
-		// 		// 				setCategories(resCat.data);
-		// 		// 			}, 200);
-		// 		// 		})
-		// 		// 		.catch((err) => console.log("categories err", err));
-		// 	})
-		// 	.catch((err) => console.log("books err", err));
-	}, [didUpdate]);
+		const filtered = booksState.books.filter((item) =>
+			item.name.toLowerCase().includes(searchText)
+		);
+		console.log("filtered", filtered);
+
+		setFilterBooks(filtered);
+	}, [searchText]);
 
 	const deleteBook = (id) => {
 		console.log(id);
@@ -53,7 +45,11 @@ const BooksList = (props) => {
 			.catch((err) => console.log(err));
 	};
 
-	if (booksState.success === false || categoriesState.success === false) {
+	if (
+		booksState.success === false ||
+		categoriesState.success === false ||
+		filterBooks == null
+	) {
 		return <Loading />;
 	}
 	return (
@@ -61,11 +57,27 @@ const BooksList = (props) => {
 			<div className="Page-text">
 				<h1> BOOKS LIST </h1>
 			</div>
-			<div className="my-4 d-flex justify-content-end">
-				<Link to="/add-book" className="btnEdit btn btn-primary ">
-					{" "}
-					Add New Book{" "}
-				</Link>
+			<div className="d-flex align-items-center justify-content-between">
+				<form className="d-flex justify-content-start w-50" role="search">
+					<input
+						className="form-control me-0 bg-dark"
+						style={{ color: "white" }}
+						type="search"
+						placeholder="Search In Books List"
+						aria-label="Search"
+						value={searchText}
+						onChange={(event) => setSearchText(event.target.value)}
+					/>
+					<button className="btn btn-outline-secondary" type="submit">
+						<i className="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</form>
+				<div className="my-4 d-flex justify-content-end">
+					<Link to="/add-book" className="btnEdit btn btn-secondary ">
+						{" "}
+						Add New Book{" "}
+					</Link>
+				</div>
 			</div>
 			<table className="table ">
 				<thead className="thead text-start">
@@ -77,15 +89,16 @@ const BooksList = (props) => {
 						<th className="text-center" scope="col">
 							ISBN
 						</th>
+						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody className="tbody text-start">
-					{booksState.books?.map((book) => {
+					{filterBooks.map((book) => {
 						const category = categoriesState.categories?.find(
-							(cat) => cat.id == book.categoryId
+							(cat) => cat.id == book?.categoryId
 						);
 						return (
-							<tr key={book.id}>
+							<tr key={book?.id}>
 								<td> # </td>
 								<td> {book?.name} </td>
 								<td> {book?.author} </td>
@@ -95,9 +108,12 @@ const BooksList = (props) => {
 									{book?.isbn === "" ? "-" : book?.isbn}{" "}
 								</td>
 								<td>
-									<div className="btn-group" role="group">
+									<div
+										className="btn-group d-flex align-items-center justify-content-end"
+										role="group"
+									>
 										<Link
-											to={`/edit-book/${book.id}`}
+											to={`/edit-book/${book?.id}`}
 											className="btn btn-outline-secondary btn-sm me-2"
 											type="button"
 										>
