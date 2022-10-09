@@ -41,6 +41,13 @@
       "author": "David Lindsay",
       "isbn": "",
       "categoryId": 2
+    },
+    {
+      "id": 1665322386520,
+      "name": "Doğu Ekspresinde Cinayet",
+      "author": "Agatha Christie",
+      "isbn": "",
+      "categoryId": "1664996471772"
     }
   ],
   "categories": [

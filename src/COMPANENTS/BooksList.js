@@ -26,7 +26,7 @@ const BooksList = (props) => {
 		console.log("filtered", filtered);
 
 		setFilterBooks(filtered);
-	}, [searchText]);
+	}, [booksState, searchText]);
 
 	const deleteBook = (id) => {
 		console.log(id);
